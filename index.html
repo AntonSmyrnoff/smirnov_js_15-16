@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js" charset="utf-8"></script>
+	<style type="text/css">
+		a {
+			margin: 5px;
+			float: left;
+			display: block;
+			text-decoration: none;
+		}
+
+		a img {
+			height: 150px;
+		}
+
+		div.search {
+			margin: 0 auto;
+			width: 50%;
+			margin-top: 25px;
+		}
+
+		input {
+			width: 80%;
+			font-family: Tahoma;
+		}
+	</style>
+	
+</head>
+<body>
+	<div class="search">
+		<input id="search-field">
+		<button>Поиск</button>
+	</div>
+
+	<script type="text/javascript">
+
+		$(document).ready(function(){
+	     	 
+	     	 $("#search-field").keypress(function(e) { //запуск поиска по нажатию Enter;
+	     	   if(e.keyCode==13) searchPic()
+	     	 });
+
+	     	 $('button').click(searchPic); //запуск поиска по клику на кнопку;
+	    });
+
+	   function searchPic() {
+	   		$('.result').remove(); //очищаем результаты предыдущего поиска
+			var txt = $("#search-field").val();
+	        
+	        $.ajax({
+	           url: "https://pixabay.com/api/?key=3981741-7a8eb8522a5415851535e06c2&q="+txt+"&image_type=photo",
+	           dataType : "jsonp",
+	           success: function (data) {
+	           		
+	           		var div = document.createElement("div");
+
+	           		if (data.total == 0) {
+	           			div.innerHTML = "По Вашему запросу ничего не найдено";
+	           			$('body').append(div);
+		    			$('div:last-child').addClass("result");
+	           		} 
+	           		else 
+	           		{
+		    			$.each(data.hits, function(i, val){
+			            	var a = document.createElement("a");
+			            	a.setAttribute('href', val.pageURL);
+			            	a.setAttribute('target', '_blank');
+			            	var inner = '<img src="'+val.previewURL+'"alt="'+val.tags+'">';
+
+			            	a.innerHTML = inner;                               
+			            	div.appendChild(a);
+			    		});
+
+			    		$('body').append(div);
+			    		$('div:last-child').addClass("result");
+		            }
+	           },
+			});
+	   }
+
+
+	</script>
+
+</body>
+</html>
