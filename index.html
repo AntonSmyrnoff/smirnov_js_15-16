@@ -81,6 +81,76 @@
 			});
 	   }
 
+	   var human = {
+	   	name: "Sergey",
+	   	age: "28",
+	   	sex: "man",
+	   	height: "1.8",
+	   	weight: "80"	
+	   };
+
+		   function worker1() {
+		   	this.work = "builder";
+		   	this.age = 40;
+		   	this.salary = 5000;
+		   	this.toWork = console.log("Hi! My name is " +this.name+ ". I'm " +this.age+ ". I have height "+this.height+ "m. I'm " +this.work+ ". My salary is " +this.salary);	
+		   };
+
+		   function worker2() {
+		   	this.name = "Svetlana";
+		   	this.work = "teacher";
+		   	this.salary = 3000;
+		   	this.toWork = console.log("Hi! My name is " +this.name+ ". I'm " +this.age+ ". I'm " +this.work+ ". My salary is " +this.salary);	
+		   };
+
+		   function worker3() {
+		   	this.name = "Sasha";
+		   	this.sex = "woman";
+		   	this.work = "admin";
+		   	this.salary = 10000;
+		   	this.toWork = console.log("Hi! My name is " +this.name+ " and I'm "+this.sex+" . I'm " +this.age+ ". I'm " +this.work+ ". My salary is " +this.salary);	
+		   };
+
+		   worker1.prototype = human;
+		   worker2.prototype = human;
+		   worker3.prototype = human;
+
+		   var newWorker1 = new worker1();
+		   var newWorker2 = new worker2();
+		   var newWorker3 = new worker3();
+
+
+		   function student1() {
+		   	this.study = "KNU";
+		   	this.age = 19;
+		   	this.stepukha = 1000;
+		   	this.WatchSerials = console.log("Hi! My name is " +this.name+ ". I'm " +this.age+ ". I have height "+this.height+ "m. I'm studying at " +this.study+ ". My scholarship is " +this.stepukha+ ". I like watching serials.");	
+		   };
+
+		   function student2() {
+		   	this.name = "Svetlana";
+		   	this.study = "NGU";
+		   	this.stepukha = 0;
+		   	this.WatchSerials = console.log("Hi! My name is " +this.name+ ". I'm " +this.age+ ". I'm studying at " +this.study+ ". My scholarship is " +this.stepukha+ ". I like watching serials.");	
+		   };
+
+		   function student3() {
+		   	this.name = "Sasha";
+		   	this.sex = "woman";
+		   	this.age = 22;
+		   	this.study = "Mogilyanka";
+		   	this.stepukha = 1400;
+		   	this.WatchSerials = console.log("Hi! My name is " +this.name+ " and I'm "+this.sex+" . I'm " +this.age+ ". I'm studying at " +this.study+ ". My scholarship is " +this.stepukha+ ". I like watching serials.");	
+		   };
+
+		   student1.prototype = human;
+		   student2.prototype = human;
+		   student3.prototype = human;
+
+		   var newStudent1 = new student1();
+		   var neWStudent2 = new student2();
+		   var newStudent3 = new student3();
+
 
 	</script>
 
